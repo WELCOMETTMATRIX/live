@@ -1,0 +1,4 @@
+title: PLAYERSTREAMS
+description: A simple site deployed with Jekyll and GitHub Pages
+baseurl: "/live"  # Set this to your repository name if deploying to GitHub Pages
+url: "https://welcomettmatrix.github.io/live/"  # Your GitHub Pages URL
