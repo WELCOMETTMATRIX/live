@@ -4,11 +4,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predeploy": "next build && next export",
-    "deploy": "gh-pages -d out",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "export": "next export",  
+    "deploy": "gh-pages -d out" 
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.6",
@@ -65,4 +67,3 @@
     "schema": "./prisma/schema.prisma"
   }
 }
-
