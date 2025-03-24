@@ -1,11 +1,11 @@
 {
-  "homepage": "https://github.com/WELCOMETTMATRIX/live.git",
+  "homepage": "https://WELCOMETTMATRIX.github.io/live",
   "name": "live",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "predeploy": "next build && next export",
+    "deploy": "gh-pages -d out",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
@@ -65,3 +65,4 @@
     "schema": "./prisma/schema.prisma"
   }
 }
+
