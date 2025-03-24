@@ -1,33 +1,10 @@
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches:
-      - main  # or whichever branch you are deploying from
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'  # or whichever version you need
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build and export
-        run: |
-          npm run build
-          npm run export
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages  # The branch to deploy to
-          folder: out  # The folder containing the exported files
+- name: Install dependencies
+  run: |
+    if [ -f "package-lock.json" ]; then
+      npm ci
+    elif [ -f "yarn.lock" ]; then
+      yarn install --frozen-lockfile
+    else
+      echo "No lock file found! Running npm install..."
+      npm install
+    fi
