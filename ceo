@@ -1,0 +1,48 @@
+-- Create a table for CEO profile information
+CREATE TABLE ceo_profiles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone_number VARCHAR(20),
+    position VARCHAR(255),
+    bio TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Create a table for company information
+CREATE TABLE company_info (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ceo_id INT,
+    company_name VARCHAR(255) NOT NULL,
+    industry VARCHAR(255),
+    founded_year INT,
+    revenue DECIMAL(15, 2),
+    location VARCHAR(255),
+    logo_url VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ceo_id) REFERENCES ceo_profiles(id)
+);
+
+-- Create a table for financial transactions
+CREATE TABLE financial_transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    company_id INT,
+    transaction_type VARCHAR(50),
+    amount DECIMAL(15, 2) NOT NULL,
+    description TEXT,
+    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (company_id) REFERENCES company_info(id)
+);
+
+-- Example insert into CEO profile table
+INSERT INTO ceo_profiles (name, email, phone_number, position, bio) 
+VALUES ('Mike DogeKing', 'mike@dogekingmike.com', '+1234567890', 'CEO', 'CEO and founder of DogeKing Mike Corporation.');
+
+-- Example insert into company information table
+INSERT INTO company_info (ceo_id, company_name, industry, founded_year, revenue, location, logo_url) 
+VALUES (1, 'DogeKing Mike Corp', 'Blockchain & Crypto', 2023, 10000000.00, 'New York, USA', 'https://dogekingmike.com/logo.png');
+
+-- Example insert into financial transactions table
+INSERT INTO financial_transactions (company_id, transaction_type, amount, description) 
+VALUES (1, 'income', 100000.00, 'Investment received from partners.');
