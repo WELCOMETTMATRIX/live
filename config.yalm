@@ -64,3 +64,6 @@ jobs:
 
       - name: Notify Deployment Success
         run: echo "The site has been deployed to GitHub Pages: ${{ steps.deployment.outputs.page_url }}"
+- name: List contents of out directory
+  run: ls -al ./out
+
