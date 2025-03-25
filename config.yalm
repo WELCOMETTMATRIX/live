@@ -3,48 +3,63 @@ name: Deploy Next.js to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # Trigger deployment on push to the main branch
 
 permissions:
-  contents: write
-  pages: write
-  id-token: write
+  contents: write  # Allow writing to repository contents
+  pages: write     # Allow writing to GitHub Pages
+  id-token: write  # Allow using ID token for GitHub Pages deployment
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Using the latest Ubuntu runner
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Checkout repository
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3  # Setup Node.js environment
         with:
-          node-version: 18
+          node-version: 18  # Specify the Node.js version
 
       - name: Install dependencies
-        run: npm install
+        run: npm install  # Install npm dependencies
+
+      - name: Set up Prisma
+        run: |
+          # Generate Prisma client and sync database
+          npx prisma generate
+          npx prisma db push  # Push schema changes to the database
 
       - name: Build Next.js app
-        run: npm run build
+        run: npm run build  # Build your Next.js app
 
       - name: Export static content
-        run: npm run export
+        run: npm run export  # Export static files for GitHub Pages
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v2  # Upload static files as artifact
         with:
-          path: out # Ensure your Next.js export outputs here
+          path: out  # Ensure Next.js export outputs here
 
   deploy:
-    needs: build
-    runs-on: ubuntu-latest
+    needs: build  # Ensure deployment occurs only after successful build
+    runs-on: ubuntu-latest  # Using the latest Ubuntu runner
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: github-pages  # Set the environment as GitHub Pages
+      url: ${{ steps.deployment.outputs.page_url }}  # URL of the deployed site
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # Checkout repository again
+
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+        id: deployment  # Assign an ID to reference the output URL
+        uses: peaceiris/actions-gh-pages@v3  # Deploy to GitHub Pages
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for deployment
+          publish_dir: ./out  # Directory for the static export
+
+      - name: Notify Deployment Success
+        run: echo "The site has been deployed to GitHub Pages: ${{ steps.deployment.outputs.page_url }}"
