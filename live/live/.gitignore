@@ -1,20 +1,47 @@
+```
+/home/user/live/index.html
+/home/user/live/Logo.jpeg
+/home/user/live/middleware.ts
+/home/user/live/next.config.mjs
+/home/user/live/next-env.d.ts
+/home/user/live/package.json
+/home/user/live/package-lock.json
+/home/user/live/postcss.config.js
+/home/user/live/react
+/home/user/live/README.md
+/home/user/live/tailwind.config.ts
+/home/user/live/tsconfig.json
+/home/user/live/.next
+/home/user/live/actions
+/home/user/live/app
+/home/user/live/components
+/home/user/live/hooks
+/home/user/live/lib
+/home/user/live/node_modules
+/home/user/live/prisma
+/home/user/live/public
+/home/user/live/store
+/home/user/live/.env
+/home/user/live/.eslintrc.json
+/home/user/live/.gitignore
+/home/user/live/components.json
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp/
 .pnp.js
 .yarn/install-state.gz
 
 # testing
-/coverage
+coverage/
 
 # next.js
-/.next/
-/out/
+.next/
 
 # production
-/build
+build/
 
 # misc
 .DS_Store
@@ -26,11 +53,15 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
-.env
+.env*
 
 # vercel
-.vercel
+.vercel/
+
+# typescript
+*.tsbuildinfo
+```
+
 
 # typescript
 *.tsbuildinfo
