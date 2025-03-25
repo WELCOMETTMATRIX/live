@@ -1,0 +1,87 @@
+# PlayerStream Documentation
+
+## Introduction
+Welcome to the official PlayerStream documentation. PlayerStream is a next-generation streaming platform integrating MetaMask for secure transactions, decentralized interactions, and a seamless user experience.
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+Before using PlayerStream, ensure you have:
+- A **MetaMask Wallet** installed and set up.
+- A **supported browser** (Chrome, Firefox, Brave, Edge).
+- Some **ETH or Cronos tokens** for blockchain transactions.
+
+### Installation
+1. Clone the repository from GitHub:
+   ```bash
+   git clone https://github.com/your-repo/playerstream.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd playerstream
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## 🔑 Authentication & MetaMask Integration
+- Users can sign in securely using their **MetaMask wallet**.
+- The platform verifies wallet addresses and manages token-based interactions.
+
+---
+
+## 🎥 Streaming Features
+### Live Streaming & VOD
+- **Low-latency live streaming** for real-time interaction.
+- **Video-on-Demand (VOD)** support for saved content.
+- **Custom overlays and branding** for streamers.
+
+### Token-Based Economy
+- **Donate to streamers** using blockchain transactions.
+- **Exclusive content** access for token holders.
+- **QP (Quantum Pulse) Points** reward system.
+
+---
+
+## 🛠️ Technology Stack
+- **Frontend**: React.js, Next.js, TailwindCSS
+- **Backend**: Node.js, Express.js, Web3.js
+- **Blockchain**: Ethereum, Cronos Network
+- **Storage**: IPFS, Decentralized Cloud
+- **Authentication**: MetaMask
+
+---
+
+## 📅 Roadmap
+- **Q1**: Beta Release with MetaMask Authentication
+- **Q2**: Token Economy & Reward System Implementation
+- **Q3**: Official Launch & Community Features
+- **Q4**: Expansion & AI-Powered Enhancements
+
+---
+
+## 📌 Contributing
+We welcome contributions! To contribute:
+1. Fork the repository.
+2. Create a new branch (`feature-branch`).
+3. Commit your changes and push to GitHub.
+4. Submit a pull request for review.
+
+---
+
+## 📜 License
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+---
+
+## 📞 Support & Contact
+For support, open an issue on GitHub or contact the development team via Discord or Telegram.
