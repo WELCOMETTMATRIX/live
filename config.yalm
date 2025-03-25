@@ -64,8 +64,3 @@ jobs:
 
       - name: Notify Deployment Success
         run: echo "The site has been deployed to GitHub Pages: ${{ steps.deployment.outputs.page_url }}"
-
-          publish_dir: ./out  # Directory for the static export
-
-      - name: Notify Deployment Success
-        run: echo "The site has been deployed to GitHub Pages: ${{ steps.deployment.outputs.page_url }}"
