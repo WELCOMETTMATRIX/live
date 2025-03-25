@@ -1,33 +1,50 @@
-name: Jekyll Build and Deploy
+name: Deploy Next.js App
 
 on:
   push:
     branches:
-      - main  # Trigger deployment on push to main
+      - main  # Ensure deployment on push to main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Ruby for Jekyll
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '2.7'  # You can update this if you use a different Ruby version
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20  # Use the correct Node.js version
 
-    - name: Install dependencies
-      run: |
-        gem install bundler
-        bundle install  # Install Jekyll and other dependencies
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build site
-      run: bundle exec jekyll build  # This generates the static site in the _site folder
+      - name: Build Next.js app
+        run: npm run build
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}  # Token for pushing to GitHub Pages
-        publish_dir: ./live  # Directory to push to the gh-pages branch
+      - name: Export Static Site
+        run: npm run export
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: out  # Upload the static output directory
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
